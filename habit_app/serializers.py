@@ -17,3 +17,13 @@ class HabitSerializers(serializers.ModelSerializer):
                       RelatedHabitValidator(fields),
                       TimeHabitValidator(field='time_to_complete'),
                       PeriodicityHabitValidator(field='periodicity')]
+
+
+class HabitDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Habit
+        fields = '__all__'
+
+    def delete(self):
+        instance = self.instance
+        instance.delete()

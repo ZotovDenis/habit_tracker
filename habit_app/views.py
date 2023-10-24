@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from habit_app.models import Habit
 from habit_app.pagination import PagePagination
 from habit_app.permissons import IsOwner, IsStaff
-from habit_app.serializers import HabitSerializers
+from habit_app.serializers import HabitSerializers, HabitDeleteSerializer
 
 
 class HabitCreateAPIView(generics.CreateAPIView):
@@ -51,8 +51,8 @@ class HabitUpdateAPIView(generics.UpdateAPIView):
 
 class HabitDestroyAPIView(generics.DestroyAPIView):
     """Контроллер удаления Привычки"""
-
-    permission_classes = [IsAuthenticated & IsOwner]
+    serializer_class = HabitDeleteSerializer
+    permission_classes = [IsAuthenticated, IsOwner]
 
     def get_queryset(self):
         return Habit.objects.filter(user=self.request.user)

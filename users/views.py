@@ -36,4 +36,4 @@ class UserUpdateAPIView(generics.UpdateAPIView):
 class UserDestroyAPIView(generics.DestroyAPIView):
     """ Контроллер удаления Пользователя """
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner | IsStaff]
+    permission_classes = [IsAuthenticated & IsOwner]

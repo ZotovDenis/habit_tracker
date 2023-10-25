@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from habit_app.models import Habit
 from habit_app.pagination import PagePagination
-from habit_app.permissons import IsOwner, IsStaff
+from habit_app.permissons import IsOwner
 from habit_app.serializers import HabitSerializers, HabitDeleteSerializer
 
 
@@ -17,7 +17,7 @@ class HabitListAPIView(generics.ListAPIView):
     """ Контроллер вывода всех Привычек"""
     serializer_class = HabitSerializers
     pagination_class = PagePagination
-    permission_classes = [IsAuthenticated, IsStaff | IsOwner]
+    permission_classes = [IsAuthenticated, IsOwner]
 
     def get_queryset(self):
         return Habit.objects.filter(user=self.request.user)

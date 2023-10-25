@@ -17,3 +17,5 @@ class Habit(models.Model):
     reward = models.CharField(max_length=100, verbose_name='Вознаграждение за выполнение', **NULLABLE)
     time_to_complete = models.SmallIntegerField(verbose_name='Время на выполнение')
     is_public = models.BooleanField(default=False, verbose_name='Признак публичности привычки')
+
+    last_send = models.DateTimeField(verbose_name='Последняя отправка напоминания', **NULLABLE)

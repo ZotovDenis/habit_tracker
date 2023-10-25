@@ -49,7 +49,7 @@ class TimeHabitValidator:
 
     def __call__(self, value):
         time_to_complete = dict(value).get(self.field)
-        if time_to_complete > 120:
+        if time_to_complete >= 120:
             raise ValidationError('Время выполнения привычки не должно превышать 120 секунд!')
 
 
@@ -63,5 +63,5 @@ class PeriodicityHabitValidator:
 
     def __call__(self, value):
         period_value = dict(value).get(self.field)
-        if period_value > 7:
+        if period_value > 7 or period_value == 0:
             raise ValidationError('Привычка должна выполняться не реже 1 раза в 7 дней!')

@@ -70,6 +70,34 @@ class HabitCreateTestCase(APITestCase):
         self.assertEqual(response.json(),
                          {'non_field_errors': ['Нельзя выбрать связанную привычку и вознаграждение одновременно!']})
 
+    def test_create_habit_validation_error_4(self):
+        """ Тест контроллера создания привычки (отработка валидатора '120 секунд') """
+
+        data = {
+            "user": self.user.id, "place": "Везде", "time": datetime.strptime("10:00", "%H:%M").time(),
+            "action": "Выпить стакан воды", "related_habit": self.habit.id, "periodicity": 1,
+            "time_to_complete": 130, "is_public": True
+        }
+
+        response = self.client.post('/habit/create/', data=data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.json(),
+                         {'non_field_errors': ['Время выполнения привычки не должно превышать 120 секунд!']})
+
+    def test_create_habit_validation_error_5(self):
+        """ Тест контроллера создания привычки (отработка валидатора '7 дней') """
+
+        data = {
+            "user": self.user.id, "place": "Везде", "time": datetime.strptime("10:00", "%H:%M").time(),
+            "action": "Выпить стакан воды", "related_habit": self.habit.id, "periodicity": 8,
+            "time_to_complete": 110, "is_public": True
+        }
+
+        response = self.client.post('/habit/create/', data=data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.json(),
+                         {'non_field_errors': ['Привычка должна выполняться не реже 1 раза в 7 дней!']})
+
 
 class HabitListTestCase(APITestCase):
     def setUp(self) -> None:

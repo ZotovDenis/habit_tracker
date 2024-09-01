@@ -1,5 +1,14 @@
 # *Курсовой проект «Атомные привычки»*
 
+![Python](https://img.shields.io/badge/Python-3.11-f8fc00?logo=python)
+![Django](https://img.shields.io/badge/Django-4.2.6-0c730a?logo=django)
+![Redis](https://img.shields.io/badge/Redis-5.0.1-red?logo=redis)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15.6-blue?logo=postgresql)
+![Celery](https://img.shields.io/badge/Celery-5.3.4-green?logo=celery)
+![DRF](https://img.shields.io/badge/DRF-3.14.0-0c730a?logo=django)
+![JWT](https://img.shields.io/badge/JWT-2.8.0-silver?logo=jsonwebtokens)
+![Requests](https://img.shields.io/badge/Requests-2.31.0-3d9ee3?logo=python)
+![Eventlet](https://img.shields.io/badge/Eventlet-0.33.3-c44747?logo=eventbrite)
 
 ## Цель проекта:
 
